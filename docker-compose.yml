@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://myspl-db:3306/department-employee?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh"
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: chiyeuminhem123
+    depends_on:
+      - myspl-db
+
+  myspl-db:
+    image: mysql:8.4
+    container_name: myspl-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: chiyeuminhem123
+      MYSQL_DATABASE: department-employee
+    volumes:
+      - myspl-db:/var/lib/mysql
+
+volumes:
+  myspl-data:
