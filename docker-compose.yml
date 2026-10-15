@@ -25,4 +25,4 @@ services:
       - myspl-db:/var/lib/mysql
 
 volumes:
-  myspl-data:
+  myspl-db:
